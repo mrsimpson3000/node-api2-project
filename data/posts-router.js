@@ -7,7 +7,7 @@ const Posts = require("./db.js");
 router.get("/", (req, res) => {
   Posts.find(req.query)
     .then((posts) => {
-      res.status(200).json(hubs);
+      res.status(200).json(posts);
     })
     .catch((error) => {
       console.log(error);
