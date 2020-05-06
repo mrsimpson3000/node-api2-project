@@ -64,4 +64,27 @@ router.get("/:id/comments", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  if (req.body.title && req.body.contents) {
+    let postInfo = {
+      created_at: Date(),
+      updated_at: Date(),
+      ...req.body,
+    };
+    Posts.insert(postInfo)
+      .then((post) => {
+        res.status(201).json(postInfo);
+      })
+      .catch((error) => {
+        res.status(500).json({
+          error: "There was an error while saving the post to the database",
+        });
+      });
+  } else {
+    res.status(400).json({
+      errorMessage: "Please provide title and contents for the post.",
+    });
+  }
+});
+
 module.exports = router;
