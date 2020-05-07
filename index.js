@@ -11,6 +11,6 @@ server.get("/", (req, res) => {
 
 server.use("/api/posts", postRouter);
 
-server.listen(4000, () => {
+server.listen(process.env.PORT || 4000, () => {
   console.log("\n== API is up ==\n");
 });
